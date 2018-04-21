@@ -1,6 +1,6 @@
 extends Node2D
 
-var borders = [Vector2(-100, -100), Vector2(484, 584)]
+var borders = [Vector2(-100.0, -100.0), Vector2(484.0, 584.0)]
 var bullet_types = [preload("res://Scenes/Objects/Bullets/Bullet.tscn"), preload("res://Scenes/Objects/Bullets/Bullet1.tscn"), preload("res://Scenes/Objects/Bullets/Bullet2.tscn")]
 var bullet_tex_types = [preload("res://Resources/Sprites/Objects/Bullets/bullet.png"), preload("res://Resources/Sprites/Objects/Bullets/bullet1.png")]
 var bullet_type_angle_allow = [false, true]
@@ -10,6 +10,8 @@ var default_bullet_list = []
 var spawner = preload("res://Scenes/Objects/Spawner.tscn")
 var space_state
 export (int) var section = 0
+var player = null # For speed and convenience.
+var player_pos = null # For speed and convenience.
 
 class Bullet extends Object:
 	var max_speed = 0
@@ -34,7 +36,7 @@ class Bullet extends Object:
 	var type = 0
 	var hitbox = RID()
 
-	func _process():
+	func _physics_process(delta):
 
 		velocity = dir * speed + grav_vec
 		pos += velocity
@@ -52,10 +54,10 @@ class Bullet extends Object:
 		grav_vec.y += grav
 
 		if SPRITE_ANGLE:
-			if speed != 0:
-				rotation = velocity.normalized().rotated(deg2rad(90)).angle()
-			if speed == 0:
-				rotation = dir.rotated(deg2rad(90)).angle()
+			if speed != 0.0:
+				rotation = velocity.normalized().rotated(deg2rad(90.0)).angle()
+			if abs(speed) > 0.0001:
+				rotation = dir.rotated(deg2rad(90.0)).angle()
 
 	func check_collisions(player, player_pos):
 		 if player.custom_collision_layer == 0:
@@ -90,18 +92,12 @@ func _draw():
 		for b in i:
 			var bullet_width = bullet_tex_types[b.type].get_width()
 			var bullet_height = bullet_tex_types[b.type].get_height()
-			draw_set_transform(Vector2(round(b.pos.x), round(b.pos.y)), b.rotation, Vector2(1, 1))
-			draw_texture(bullet_tex_types[b.type], Vector2(bullet_width/2.0, bullet_height/2.0) * -1)
-
-var player = null # For speed and convenience.
-var player_pos = null # For speed and convenience.
+			draw_set_transform(Vector2(round(b.pos.x), round(b.pos.y)), b.rotation, Vector2(1.0, 1.0))
+			draw_texture(bullet_tex_types[b.type], Vector2(bullet_width * .5, bullet_height * .5) * -1.0)
 
 func _ready():
 	player = get_parent().get_node("Player")
 	bullet_lists.append(default_bullet_list)
-	space_state = get_world_2d().space
-	bullet_shapes.append(Physics2DServer.circle_shape_create())
-	Physics2DServer.shape_set_data(bullet_shapes[0], 100)
 
 func target(spawnpos, targetpos, returnvalue = 0):
 	var finalpos = targetpos - spawnpos
@@ -128,6 +124,7 @@ func _process(delta):
 			if b.pos.x <= borders[0].x or b.pos.y <= borders[0].y or b.pos.x >= borders[1].x or b.pos.y >= borders[1].y:
 				b.free()
 				i.remove(i.find(b))
+	update()
 
 func _physics_process(delta):
 	var player_is_dead = player.is_dead # For speed and convenience.
@@ -135,7 +132,6 @@ func _physics_process(delta):
 		player_pos = player.get_global_transform().origin
 	for i in bullet_lists:
 		for b in i:
-			b._process()
+			b._physics_process(delta)
 			if !player_is_dead:
 				b.check_collisions(player, player_pos)
-	update()

@@ -1,12 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Objects/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Stage/Test_Stage.gd" type="Script" id=2]
-
-[sub_resource type="CircleShape2D" id=1]
-
-custom_solver_bias = 0.0
-radius = 54.7015
 
 [node name="World" type="Node2D" index="0"]
 
@@ -23,25 +18,5 @@ collision_mask = 1024
 script = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 section = 3
-
-[node name="Node2D" type="Node2D" parent="." index="2"]
-
-position = Vector2( 306, 237 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="StaticBody2D" type="Area2D" parent="Node2D" index="0"]
-
-input_pickable = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D" index="0"]
-
-shape = SubResource( 1 )
 
 
