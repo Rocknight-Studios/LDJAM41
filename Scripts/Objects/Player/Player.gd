@@ -34,12 +34,12 @@ func _process(delta):
 	if down:
 		direction += Vector2(0, 1)
 	direction = direction.normalized()
-	
+
 	if shift:
 		speed = FOCUS_SPEED
 	else:
 		speed = NORMAL_SPEED
-	
+
 	if fire and can_shot:
 		_shoot(Vector2(6,0))
 		_shoot(Vector2(-6,0))
@@ -47,9 +47,9 @@ func _process(delta):
 		_shoot(Vector2(-18,0))
 		shot_timer.start()
 		can_shot = false
-	
+
 	velocity = direction * speed
-	
+
 	move_and_collide(velocity)
 
 func _shoot(pos=Vector2(0, 0), shotdir = Vector2(0, -1)):
@@ -63,5 +63,10 @@ func _on_Timer_timeout():
 	can_shot = true
 
 
-func _on_Hitbox_area_entered(area):
-	print("I have just died. :(")
+func on_custom_collision(bullet):
+	print(str(bullet) + " killed me.")
+	is_dead = true
+
+const custom_collision_layer = 0
+var is_dead = false
+

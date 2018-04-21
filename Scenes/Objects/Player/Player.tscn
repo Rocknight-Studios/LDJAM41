@@ -14,14 +14,14 @@ extents = Vector2( 10, 15.3364 )
 custom_solver_bias = 0.0
 radius = 1.41379
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
-collision_layer = 1
-collision_mask = 1
+collision_layer = 2
+collision_mask = 2
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -37,7 +37,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Hitbox" type="Area2D" parent="." index="2"]
 
-editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -53,6 +52,7 @@ __meta__ = {
 [node name="Hitbox_Collision" type="CollisionShape2D" parent="Hitbox" index="0"]
 
 shape = SubResource( 2 )
+disabled = true
 
 [node name="Timer" type="Timer" parent="." index="3"]
 
@@ -68,8 +68,6 @@ volume_db = 0.0
 autoplay = false
 mix_target = 0
 bus = "Master"
-
-[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
