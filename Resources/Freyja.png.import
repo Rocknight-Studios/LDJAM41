@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Hallway-1280.png-3417b59acb0caab26d6d9e1d06ad505a.stex"
+path="res://.import/Freyja.png-6c431f55ea7b44fb7f3b7e497ba3af10.stex"
 
 [deps]
 
-source_file="res://Resources/Sprites/Hallway-1280.png"
-source_md5="50e65e959581f8045c458413051cce11"
+source_file="res://Resources/Freyja.png"
+source_md5="768b6bcd09a0abc1c0de7e9e38ffeca5"
 
-dest_files=[ "res://.import/Hallway-1280.png-3417b59acb0caab26d6d9e1d06ad505a.stex" ]
-dest_md5="8297ff785caa5e38756b235a5866d51e"
+dest_files=[ "res://.import/Freyja.png-6c431f55ea7b44fb7f3b7e497ba3af10.stex" ]
+dest_md5="f51c78739631a7b49a1c1de4527a4813"
 
 [params]
 
