@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Objects/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Sprites/Objects/Player/Ship.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Sounds/death_jack_01.wav" type="AudioStream" id=3]
+[ext_resource path="res://Resources/Sounds/graze.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -61,9 +62,17 @@ wait_time = 0.05
 one_shot = false
 autostart = false
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]
+[node name="Death" type="AudioStreamPlayer" parent="." index="4"]
 
 stream = ExtResource( 3 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Graze" type="AudioStreamPlayer" parent="." index="5"]
+
+stream = ExtResource( 4 )
 volume_db = 0.0
 autoplay = false
 mix_target = 0

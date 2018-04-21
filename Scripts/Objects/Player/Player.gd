@@ -12,6 +12,9 @@ var shot = preload("res://Scenes/Objects/Player/Shots/DefaultPlayerShot.tscn")
 var can_shot = true
 var hitbox
 
+var graze = 0
+var graze_radius = 10
+
 func _ready():
 	parent = get_parent()
 	hitbox = $Hitbox
@@ -47,6 +50,7 @@ func _process(delta):
 		_shoot(Vector2(-18,0))
 		shot_timer.start()
 		can_shot = false
+		is_dead = false
 
 	velocity = direction * speed
 
@@ -66,6 +70,13 @@ func _on_Timer_timeout():
 func on_custom_collision(bullet):
 	print(str(bullet) + " killed me.")
 	is_dead = true
+	$Death.play()
+
+func on_graze_collision(bullet):
+	print(str(bullet) + " grazed.")
+	graze += 1
+	print(str(graze))
+	$Graze.play()
 
 const custom_collision_layer = 0
 var is_dead = false

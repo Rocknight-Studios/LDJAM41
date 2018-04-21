@@ -5,7 +5,7 @@ var bullet_types = [preload("res://Scenes/Objects/Bullets/Bullet.tscn"), preload
 var bullet_tex_types = [preload("res://Resources/Sprites/Objects/Bullets/bullet.png"), preload("res://Resources/Sprites/Objects/Bullets/bullet1.png")]
 var bullet_type_angle_allow = [false, true]
 var bullet_lists = []
-var bullet_shapes = []
+var bullet_radiuses = [2.0, 6.0]
 var default_bullet_list = []
 var spawner = preload("res://Scenes/Objects/Spawner.tscn")
 var space_state
@@ -35,6 +35,8 @@ class Bullet extends Object:
 	var SPRITE_ANGLE = false
 	var type = 0
 	var hitbox = RID()
+	
+	var grazed = false
 
 	func _physics_process(delta):
 
@@ -64,6 +66,11 @@ class Bullet extends Object:
 			 if player_pos.x > pos.x - radius && player_pos.x < pos.x + radius:
 				 if player_pos.y > pos.y - radius && player_pos.y < pos.y + radius:
 					 player.on_custom_collision(self)
+			 if !grazed:
+				 if player_pos.x > pos.x - radius - player.graze_radius && player_pos.x < pos.x + radius + player.graze_radius:
+					 if player_pos.y > pos.y - radius - player.graze_radius && player_pos.y < pos.y + radius + player.graze_radius:
+						 player.on_graze_collision(self)
+						 grazed = true
 
 func _create_bullet(pos, speed, angle, type = 0, acceleration = 0, max_speed = 0, max_speed_enable = false, min_speed = 0, min_speed_enable = false, dir_change = 0, dir_change_adder = 0, gravity = 0, bullet_list_to = default_bullet_list):
 	var b = Bullet.new()
@@ -83,7 +90,7 @@ func _create_bullet(pos, speed, angle, type = 0, acceleration = 0, max_speed = 0
 	b.rotation = b.dir.angle()
 
 	b.hitbox = Physics2DServer.body_create()
-	b.radius = 10.0
+	b.radius = bullet_radiuses[type]
 
 	bullet_list_to.append(b)
 
