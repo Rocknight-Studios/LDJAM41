@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Objects/Bullets/Bullet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Resources/Sprites/Objects/Bullets/bullet1.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 3.70339
+height = 10.127
+
+[node name="Bullet" index="0" instance=ExtResource( 1 )]
+
+SPRITE_ANGLE = true
+
+[node name="Sprite" parent="." index="0"]
+
+position = Vector2( 0, -2 )
+texture = ExtResource( 2 )
+
+[node name="Collision" parent="." index="1"]
+
+shape = SubResource( 1 )
+
+

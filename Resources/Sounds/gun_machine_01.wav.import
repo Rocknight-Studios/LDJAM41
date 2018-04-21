@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/gun_machine_01.wav-ffecb277efe9b7d4bce005a06c126cc6.sample"
+
+[deps]
+
+source_file="res://Resources/Sounds/gun_machine_01.wav"
+source_md5="87e4043dfcef2e1aa3ce2af46892572c"
+
+dest_files=[ "res://.import/gun_machine_01.wav-ffecb277efe9b7d4bce005a06c126cc6.sample" ]
+dest_md5="6b43f455ec942227c77f88c13d08c93a"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

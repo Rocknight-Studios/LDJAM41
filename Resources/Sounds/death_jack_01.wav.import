@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/death_jack_01.wav-8b791c894e9dfdf1981bba3307425c3a.sample"
+
+[deps]
+
+source_file="res://Resources/Sounds/death_jack_01.wav"
+source_md5="694687c006e0600a8422eca52702a764"
+
+dest_files=[ "res://.import/death_jack_01.wav-8b791c894e9dfdf1981bba3307425c3a.sample" ]
+dest_md5="4fdf4ddf3e9e8179df9074ab3f9e1d08"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
