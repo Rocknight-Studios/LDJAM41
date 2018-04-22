@@ -73,6 +73,12 @@ func on_custom_collision(bullet):
 	print(str(bullet) + " killed me.")
 	is_dead = true
 	$Death.play()
+	
+	for loser in get_children():
+		if loser == $Death:
+			pass
+		else:
+			loser.queue_free()
 
 	scene_load_timer.set_one_shot(true)
 	scene_load_timer.set_timer_process_mode(Timer.TIMER_PROCESS_PHYSICS)
