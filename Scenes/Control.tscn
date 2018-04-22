@@ -68,8 +68,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 2 )
 _sections_unfolded = [ "Visibility" ]
-dialogue_options = [ [ 0.5, [ "A1.1", 1 ], [ "A1.2", 2 ], [ "A1.3", 1 ], "First question" ], [ 0.25, [ "A2.1", 2 ], [ "A2.2", 0 ], [ "A2.3", 2 ], "Second Question" ], [ 0.0, [ "Blabla1", 0 ], [ "Blabla2", 0 ], [ "Blabla3", 0 ], "Hey, hey, hey" ] ]
-current_dialogue_index = 0
+dialogue_options = [ [ 0.5, [ "A1.1", 1 ], [ "A1.2", 2 ], [ "A1.3", 1 ], "First question" ], [ 0.25, [ "A2.1", 2 ], [ "A2.2", 0 ], [ "A2.3", 3 ], "Second Question" ], [ 0.0, [ "Blabla1", 0 ], [ "Blabla2", 0 ], [ "Blabla3", 0 ], "Hey, hey, hey" ], [ 1.0 ] ]
 
 [node name="TextureProgress" type="TextureProgress" parent="DialogueWrapper" index="0"]
 

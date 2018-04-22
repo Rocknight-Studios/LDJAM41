@@ -82,7 +82,12 @@ func on_custom_collision(bullet):
 	add_child(scene_load_timer)
 
 func on_load_novel_scene():
-	Global.emit_signal("load_novel_scene")
+	Global.attempts -= 1
+	Global.current_dialogue_index = 0
+	if Global.attempts > 0:
+		Global.emit_signal("load_novel_scene")
+	else:
+		Global.emit_signal("load_game_over_scene")
 
 func on_graze_collision(bullet):
 	print(str(bullet) + " grazed.")
