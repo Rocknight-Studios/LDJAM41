@@ -3,7 +3,7 @@
 [ext_resource path="res://Scenes/Objects/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Stage/Test_Stage.gd" type="Script" id=2]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" index="0"]
 
 _sections_unfolded = [ "Transform" ]
 
@@ -17,6 +17,6 @@ collision_mask = 1024
 
 script = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
-section = 3
+section = 4
 
 
