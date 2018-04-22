@@ -1,0 +1,18 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/LDJAM41-1-ogg-coverted.ogg-0a29d87cfa2c57b78a162aabbf538d53.oggstr"
+
+[deps]
+
+source_file="res://Resources/LDJAM41-1-ogg-coverted.ogg"
+source_md5="f09ee52f7bcdc19ada884d45c80da820"
+
+dest_files=[ "res://.import/LDJAM41-1-ogg-coverted.ogg-0a29d87cfa2c57b78a162aabbf538d53.oggstr" ]
+dest_md5="bdcc2268f6b293855d0e288cb7b8637c"
+
+[params]
+
+loop=true
+loop_offset=0
