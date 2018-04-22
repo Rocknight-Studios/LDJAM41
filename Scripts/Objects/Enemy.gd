@@ -9,6 +9,7 @@ var target_dir = Vector2()
 var pos_to_target_dir = Vector2()
 var health_bar_scene = preload("res://Scenes/Objects/Health.tscn")
 var health_bar = 0
+var can_take_damage = false
 signal enemy_dead
 
 func _ready():
@@ -20,9 +21,12 @@ func _ready():
 	health_bar = get_node(health_bar.get_path())
 
 func take_damage(damage):
+	if !can_take_damage:
+		return
 	health -= damage
 	if health <= 0:
 		emit_signal("enemy_dead")
+		can_take_damage = true
 	health_bar.value = health/max_health * 100.0
 	print(health)
 

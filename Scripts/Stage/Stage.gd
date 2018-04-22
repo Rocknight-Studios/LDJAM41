@@ -10,7 +10,8 @@ var default_bullet_list = []
 var spawner = preload("res://Scenes/Objects/Spawner.tscn")
 var boss = preload("res://Scenes/Enemy.tscn")
 var space_state
-export (int) var section = 0
+export (int) var section = 0 
+var current_section setget section_change
 var player = null # For speed and convenience.
 var player_pos = null # For speed and convenience.
 
@@ -158,3 +159,6 @@ func on_load_novel_scene():
 		Global.emit_signal("load_novel_scene")
 	else:
 		Global.emit_signal("load_game_over_scene")
+
+func section_change(value):
+	section = value

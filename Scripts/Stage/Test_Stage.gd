@@ -11,14 +11,135 @@ var spawno_custom_bullet_dic = {}
 var timer = 0
 var angle_list = [0.0]
 var pos_list = [Vector2(192.0, 242.0)]
+onready var time_before_new_section = Timer.new()
+var please_wait = false
 
 func _ready():
-	if section == 0:
-		awesomeboss = _create_boss()
-		awesomeboss.health = 500.0
-		awesomeboss.max_health = 500.0
+	awesomeboss = _create_boss()
+	awesomeboss.health = 500.0
+	awesomeboss.max_health = 500.0
+	awesomeboss.connect("enemy_dead", self, "enemy_dead")
+	section_change(section)
+	
+
+func _process(delta):
+	
+	if please_wait == true:
+		return
+	
+	if current_section == 0:
+		awesomeboss.position.x += rand_range(-10, 10)
+		awesomeboss.position.y += rand_range(-10, 10)
+		if awesomeboss.position.y >= 114:
+			awesomeboss.position.y += rand_range(-5, -10)
+		if awesomeboss.position.x >= 300:
+			awesomeboss.position.x += rand_range(-5, -10)
+		if awesomeboss.position.y <= 10:
+			awesomeboss.position.y += rand_range(5, 10)
+		if awesomeboss.position.x <= 10:
+			awesomeboss.position.x += rand_range(5, 10)
+		spawno.pos = awesomeboss.position
+	if current_section == 2:
+		if timer >= 7:
+			spawno.bullet_speed = 2
+			timer = 0
+			spawno.angle += rand_range(0, 90)
+			spawno.spin = rand_range(5, -5)
+		spawno.bullet_speed += 0.375
+		timer += 1
+	if current_section == 1:
+		if timer >= 60:
+			spawno2.pause = false
+		if spawno.angle >= 130:
+			spawno.spin = -1.5
+		if spawno.angle <= 95:
+			spawno.spin = 1.5
+		if spawno1.angle <= -130:
+			spawno1.spin = 1.5
+		if spawno1.angle >= -95:
+			spawno1.spin = -1.5
+		spawno2.angle = target(spawno2.pos, player.position)
+		timer += 1
+	if current_section == 4:
+		spawno.angle = rand_range(16.875, 28.125)
+		for b in spawno_custom_bullet_list:
+			if b.speed <= 0:
+				b.speed = -b.speed
+				b.acceleration = 0.1
+				b.max_speed = rand_range(1.5, 2.0)
+				b.max_speed_enable = true
+				b.dir = b.dir.rotated(deg2rad(180.0 + rand_range(-22.5, 22.5)))
+				b.rotation = -90
+	if current_section == 5:
+		#spawno1.angle = target(spawno1.pos, player.position)
+		if timer > 30:
+			for i in range(0, 11):
+				var b_pos = Vector2(rand_range(162, 222), rand_range(212, 272))
+				_create_bullet(b_pos, 0.25, rand_range(0, 360), 0)
+			timer = 0
+		else:
+			timer += 1
+	if current_section == 6:
+		
+		spawno.bullet_angle = rand_range(-360, 360)
+		spawno.pos.y += 0.02
+		spawno.bullet_acceleration += 0.000015
+		spawno.spawnrate += 0.000004
+	
+	if current_section == 3:
+		if timer >= 15:
+			spawno1.pause = false
+		spawno.angle = rand_range(0, 360)
+		spawno1.angle = rand_range(0, 360)
+		timer += 1
+
+func enemy_dead():
+	please_wait = true
+	
+	for i in bullet_lists:
+		for b in i:
+			b.free()
+			i.remove(i.find(b))
+	
+	if spawno != null:
+		spawno.queue_free()
+		spawno = null
+	if spawno1 != null:
+		spawno1.queue_free()
+		spawno1 = null
+	if spawno2 != null:
+		spawno2.queue_free()
+		spawno2 = null
+	
+	time_before_new_section.set_one_shot(true)
+	time_before_new_section.set_timer_process_mode(Timer.TIMER_PROCESS_PHYSICS)
+	time_before_new_section.set_wait_time(1.0)
+	time_before_new_section.connect("timeout", self, "on_wait_timer")
+	time_before_new_section.start()
+	add_child(time_before_new_section)
+
+func on_wait_timer():
+	for i in bullet_lists:
+		for b in i:
+			b.free()
+			i.remove(i.find(b))
+	section_change(current_section + 1)
+
+func section_change(value):
+	current_section = value
+	timer = 0
+	
+	please_wait = false
+	
+	awesomeboss.can_take_damage = true
+	
+	for i in bullet_lists:
+		for b in i:
+			b.free()
+			i.remove(i.find(b))
+	
+	if current_section == 0:
 		awesomeboss.position = Vector2(384/2, 484/4)
-		awesomeboss.connect("enemy_dead", self, "enemy_dead")
 		spawno = _create_spawner()
 		spawno.pos = Vector2(384/2, 484/4)
 		spawno.spin = 0.5
@@ -31,12 +152,10 @@ func _ready():
 		spawno.bullet_speed_to = 4.0
 		spawno.bullet_speed_to_enable = true
 
-	if section == 1:
-		awesomeboss = _create_boss()
+	if current_section == 1:
 		awesomeboss.health = 500.0
 		awesomeboss.max_health = 500.0
 		awesomeboss.position = Vector2(384/2, 484/4)
-		awesomeboss.connect("enemy_dead", self, "enemy_dead")
 		spawno = _create_spawner()
 		spawno.pos = Vector2(384/2, 484/4)
 		spawno.spawnrate = 0.01
@@ -67,12 +186,10 @@ func _ready():
 		spawno2.pause = true
 		
 
-	if section == 2:
-		awesomeboss = _create_boss()
+	if current_section == 2:
 		awesomeboss.health = 500.0
 		awesomeboss.max_health = 500.0
 		awesomeboss.position = Vector2(384/2, 484/4)
-		awesomeboss.connect("enemy_dead", self, "enemy_dead")
 		spawno = _create_spawner()
 		spawno.pos = Vector2(384/2, 484/4)
 		spawno.bullet_ammount = 5
@@ -81,12 +198,10 @@ func _ready():
 		spawno.bullet_seperation = 324
 		spawno.bullet_speed = 2
 	
-	if section == 3:
-		awesomeboss = _create_boss()
+	if current_section == 3:
 		awesomeboss.health = 1000.0
 		awesomeboss.max_health = 1000.0
 		awesomeboss.position = Vector2(384/2, 484/4)
-		awesomeboss.connect("enemy_dead", self, "enemy_dead")
 		spawno = _create_spawner()
 		spawno.pos = Vector2(384/2, 484/4)
 		spawno.bullet_ammount = 10.0
@@ -123,14 +238,12 @@ func _ready():
 		spawno1.thread_seperation = 36
 		spawno1.pause = true
 	
-	if section == 4:
+	if current_section == 4:
 		borders = [Vector2(-100, -100), Vector2(484, 584)]
 		bullet_lists.append(spawno_custom_bullet_list)
-		awesomeboss = _create_boss()
 		awesomeboss.health = 500.0
 		awesomeboss.max_health = 500.0
 		awesomeboss.position = Vector2(384/2, 484/4)
-		awesomeboss.connect("enemy_dead", self, "enemy_dead")
 		spawno = _create_spawner()
 		spawno.pos = Vector2(384/2, 484/4)
 		spawno.spin = 0
@@ -146,14 +259,12 @@ func _ready():
 		spawno.thread_seperation = 45
 		spawno.bullet_list_to = spawno_custom_bullet_list
 	
-	if section == 5:
+	if current_section == 5:
 		borders = [Vector2(-100, -100), Vector2(484, 584)]
 		bullet_lists.append(spawno_custom_bullet_list)
-		awesomeboss = _create_boss()
 		awesomeboss.health = 500.0
 		awesomeboss.max_health = 500.0
 		awesomeboss.position = Vector2(384/2, 484/2)
-		awesomeboss.connect("enemy_dead", self, "enemy_dead")
 		spawno = _create_spawner()
 		spawno.pos = Vector2(384/2, 484/2)
 		spawno.angle = 22.5
@@ -173,14 +284,12 @@ func _ready():
 		spawno.threads = 4
 		spawno.thread_seperation = 90
 	
-	if section == 6:
+	if current_section == 6:
 		borders = [Vector2(-100, -100), Vector2(484, 584)]
 		bullet_lists.append(spawno_custom_bullet_list)
-		awesomeboss = _create_boss()
 		awesomeboss.health = 2000.0
-		awesomeboss.max_health = 00.0
+		awesomeboss.max_health = 2000.0
 		awesomeboss.position = Vector2(384/2, 484/4)
-		awesomeboss.connect("enemy_dead", self, "enemy_dead")
 		spawno = _create_spawner()
 		spawno.pos = Vector2(384/2, 484/4)
 		spawno.angle = 22.5
@@ -193,86 +302,3 @@ func _ready():
 		spawno.bullet_ammount = 20
 		spawno.bullet_seperation = 360 -12
 		spawno.bullet_spawnradius = 25
-
-func _process(delta):
-	if section == 0:
-		awesomeboss.position.x += rand_range(-10, 10)
-		awesomeboss.position.y += rand_range(-10, 10)
-		if awesomeboss.position.y >= 114:
-			awesomeboss.position.y += rand_range(-5, -10)
-		if awesomeboss.position.x >= 300:
-			awesomeboss.position.x += rand_range(-5, -10)
-		if awesomeboss.position.y <= 10:
-			awesomeboss.position.y += rand_range(5, 10)
-		if awesomeboss.position.x <= 10:
-			awesomeboss.position.x += rand_range(5, 10)
-		spawno.pos = awesomeboss.position
-	if section == 2:
-		if timer >= 7:
-			spawno.bullet_speed = 2
-			timer = 0
-			spawno.angle += rand_range(0, 90)
-			spawno.spin = rand_range(5, -5)
-		spawno.bullet_speed += 0.375
-		timer += 1
-	if section == 1:
-		if timer >= 60:
-			spawno2.pause = false
-		if spawno.angle >= 130:
-			spawno.spin = -1.5
-		if spawno.angle <= 95:
-			spawno.spin = 1.5
-		if spawno1.angle <= -130:
-			spawno1.spin = 1.5
-		if spawno1.angle >= -95:
-			spawno1.spin = -1.5
-		spawno2.angle = target(spawno2.pos, player.position)
-		timer += 1
-	if section == 4:
-		spawno.angle = rand_range(16.875, 28.125)
-		for b in spawno_custom_bullet_list:
-			if b.speed <= 0:
-				b.speed = -b.speed
-				b.acceleration = 0.1
-				b.max_speed = rand_range(1.5, 2.0)
-				b.max_speed_enable = true
-				b.dir = b.dir.rotated(deg2rad(180.0 + rand_range(-22.5, 22.5)))
-				b.rotation = -90
-	if section == 5:
-		#spawno1.angle = target(spawno1.pos, player.position)
-		if timer > 30:
-			for i in range(0, 11):
-				var b_pos = Vector2(rand_range(162, 222), rand_range(212, 272))
-				_create_bullet(b_pos, 0.25, rand_range(0, 360), 0)
-			timer = 0
-		else:
-			timer += 1
-	if section == 6:
-		
-		spawno.bullet_angle = rand_range(-360, 360)
-		spawno.pos.y += 0.02
-		spawno.bullet_acceleration += 0.000015
-		spawno.spawnrate += 0.000004
-	
-	if section == 3:
-		if timer >= 15:
-			spawno1.pause = false
-		spawno.angle = rand_range(0, 360)
-		spawno1.angle = rand_range(0, 360)
-		timer += 1
-
-func enemy_dead():
-	for i in bullet_lists:
-		for b in i:
-			b.free()
-			i.remove(i.find(b))
-	awesomeboss.queue_free()
-	set_physics_process(false)
-	set_process(false)
-	scene_load_timer.set_one_shot(true)
-	scene_load_timer.set_timer_process_mode(Timer.TIMER_PROCESS_PHYSICS)
-	scene_load_timer.set_wait_time(0)
-	scene_load_timer.connect("timeout", self, "on_load_novel_scene")
-	scene_load_timer.start()
-	add_child(scene_load_timer)
-		
