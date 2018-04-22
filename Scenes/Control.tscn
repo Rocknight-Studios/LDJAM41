@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Resources/BackgroundHall-1280.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/DialogueWrapper.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Resources/Freyja/FreyjaBody.png" type="Texture" id=8]
 [ext_resource path="res://Resources/Freyja/FreyjaHappy.png" type="Texture" id=9]
 [ext_resource path="res://Resources/Fonts/OpenSans-Regular.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Resources/LDJAM41-1-ogg-coverted.ogg" type="AudioStream" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -285,6 +286,14 @@ text = "Option3"
 flat = false
 align = 0
 _sections_unfolded = [ "Margin" ]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2"]
+
+stream = ExtResource( 11 )
+volume_db = 0.0
+autoplay = true
+mix_target = 0
+bus = "Master"
 
 [connection signal="button_down" from="DialogueWrapper/Background/GirlText/VBoxContainer/Button0" to="DialogueWrapper" method="_on_Button0_button_down"]
 
