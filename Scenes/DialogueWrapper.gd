@@ -6,6 +6,7 @@ onready var button1 = get_node("Background/GirlText/VBoxContainer/Button1") # Fo
 onready var button2 = get_node("Background/GirlText/VBoxContainer/Button2") # For speed and convenience.
 onready var progress_bar = get_node("TextureProgress") # For speed and convenience.
 onready var freyja_head = get_node("Background/GirlText/Body/Head") # For speed and convenience.
+onready var boss = get_parent().get_node("Boss") # For speed and convenience.
 export (Array) var dialogue_options = [] # All the options of the player.
 var approximation_float = .0001 # Take floating point error into account.
 
@@ -22,6 +23,8 @@ func set_new_dialogue_state():
 		progress_bar.value = dialogue_options[Global.current_dialogue_index][0]
 
 		freyja_head.texture = dialogue_options[Global.current_dialogue_index][5]
+
+		boss.texture = dialogue_options[Global.current_dialogue_index][6]
 
 		if progress_bar.value < approximation_float:
 			Global.emit_signal("load_bullet_hell_scene")
