@@ -5,6 +5,7 @@ var spawno1
 var spawno1posadd = 5
 var spawno2
 var spawno3
+var awesomeboss
 var spawno_custom_bullet_list = []
 var spawno_custom_bullet_dic = {}
 var timer = 0
@@ -99,6 +100,11 @@ func _ready():
 	if section == 4:
 		borders = [Vector2(-100, -100), Vector2(484, 584)]
 		bullet_lists.append(spawno_custom_bullet_list)
+		awesomeboss = _create_boss()
+		awesomeboss.health = 1500.0
+		awesomeboss.max_health = 1500.0
+		awesomeboss.position = Vector2(384/2, 484/4)
+		awesomeboss.connect("enemy_dead", self, "enemy_dead")
 		spawno = _create_spawner()
 		spawno.pos = Vector2(384/2, 484/4)
 		spawno.angle = 22.5
@@ -147,5 +153,17 @@ func _process(delta):
 		spawno.bullet_acceleration += 0.000015
 		spawno.spawnrate += 0.000004
 
-
+func enemy_dead():
+	for i in bullet_lists:
+		for b in i:
+			b.free()
+			i.remove(i.find(b))
+	awesomeboss.queue_free()
+	set_physics_process(false)
+	scene_load_timer.set_one_shot(true)
+	scene_load_timer.set_timer_process_mode(Timer.TIMER_PROCESS_PHYSICS)
+	scene_load_timer.set_wait_time(1.0)
+	scene_load_timer.connect("timeout", self, "on_load_novel_scene")
+	scene_load_timer.start()
+	add_child(scene_load_timer)
 		

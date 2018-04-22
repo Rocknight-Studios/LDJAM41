@@ -8,10 +8,13 @@ var bullet_lists = []
 var bullet_radiuses = [2.0, 6.0]
 var default_bullet_list = []
 var spawner = preload("res://Scenes/Objects/Spawner.tscn")
+var boss = preload("res://Scenes/Enemy.tscn")
 var space_state
 export (int) var section = 0
 var player = null # For speed and convenience.
 var player_pos = null # For speed and convenience.
+
+onready var scene_load_timer = Timer.new() # To save resources and have just one instance of the timer.
 
 class Bullet extends Object:
 	var max_speed = 0
@@ -123,6 +126,11 @@ func _create_spawner():
 	add_child(s)
 	return get_node(s.get_path())
 
+func _create_boss():
+	var ihopegitdoesntfuckmeover = boss.instance()
+	add_child(ihopegitdoesntfuckmeover)
+	return get_node(ihopegitdoesntfuckmeover.get_path())
+
 func _process(delta):
 	var bullet_on_screen = 0
 	for i in bullet_lists:
@@ -142,3 +150,11 @@ func _physics_process(delta):
 			b._physics_process(delta)
 			if !player_is_dead:
 				b.check_collisions(player, player_pos)
+
+func on_load_novel_scene():
+	Global.attempts -= 1
+	Global.current_dialogue_index = 0
+	if Global.attempts > 0:
+		Global.emit_signal("load_novel_scene")
+	else:
+		Global.emit_signal("load_game_over_scene")
