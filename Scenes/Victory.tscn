@@ -16,7 +16,7 @@ use_filter = true
 font_data = SubResource( 1 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Victory" type="Control"]
+[node name="Victory" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0

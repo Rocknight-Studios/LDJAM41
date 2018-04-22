@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Resources/BackgroundHall-1280.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Boss/BossTransparent.png" type="Texture" id=2]
@@ -7,20 +7,21 @@
 [ext_resource path="res://Resources/Freyja/FreyjaUnhappy.png" type="Texture" id=5]
 [ext_resource path="res://Resources/Freyja/FreyjaFlirty.png" type="Texture" id=6]
 [ext_resource path="res://Resources/Freyja/FreyjaAngry.png" type="Texture" id=7]
-[ext_resource path="res://Resources/ProgressUnder.png" type="Texture" id=8]
-[ext_resource path="res://Resources/ProgressOver.png" type="Texture" id=9]
-[ext_resource path="res://Resources/DialogueBackground.png" type="Texture" id=10]
-[ext_resource path="res://Resources/Fonts/BebasNeue.otf" type="DynamicFontData" id=11]
-[ext_resource path="res://Resources/Freyja/FreyjaBody.png" type="Texture" id=12]
-[ext_resource path="res://Resources/Fonts/OpenSans-Regular.ttf" type="DynamicFontData" id=13]
-[ext_resource path="res://Resources/LDJAM41-1-ogg-coverted.ogg" type="AudioStream" id=14]
+[ext_resource path="res://Resources/Boss/Boss.png" type="Texture" id=8]
+[ext_resource path="res://Resources/ProgressUnder.png" type="Texture" id=9]
+[ext_resource path="res://Resources/ProgressOver.png" type="Texture" id=10]
+[ext_resource path="res://Resources/DialogueBackground.png" type="Texture" id=11]
+[ext_resource path="res://Resources/Fonts/BebasNeue.otf" type="DynamicFontData" id=12]
+[ext_resource path="res://Resources/Freyja/FreyjaBody.png" type="Texture" id=13]
+[ext_resource path="res://Resources/Fonts/OpenSans-Regular.ttf" type="DynamicFontData" id=14]
+[ext_resource path="res://Resources/LDJAM41-1-ogg-coverted.ogg" type="AudioStream" id=15]
 
 [sub_resource type="DynamicFont" id=1]
 
 size = 24
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 11 )
+font_data = ExtResource( 12 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="DynamicFont" id=2]
@@ -28,7 +29,7 @@ _sections_unfolded = [ "Font", "Settings" ]
 size = 14
 use_mipmaps = false
 use_filter = true
-font_data = ExtResource( 13 )
+font_data = ExtResource( 14 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
 [node name="Control" type="Control" index="0"]
@@ -96,7 +97,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 3 )
 _sections_unfolded = [ "Visibility" ]
-dialogue_options = [ [ 0.5, [ "Hi, how are you Freyja?", 1 ], [ "Yo, yo, yo, baby! What's up?", 2 ], [ "...", 0 ], "Hm...?", ExtResource( 4 ), ExtResource( 2 ) ], [ 0.5, [ "Same as you!", 3 ], [ "Doing good as always!", 4 ], [ "Better now that I met you!", 5 ], "I'm good, you?", ExtResource( 4 ) ], [ 0.35, [ "Nice, I'm good, too!", 6 ], [ "Sorry, I didn't mean to be rude!", 7 ], [ "Oh, good? I thought you're tired... cause you've been running through my mind all day!", 8 ], "Good. What do you want?", ExtResource( 5 ) ], [ 0.55, [ "So, have you already thought about who you're going to prom with?", 9 ], [ "You. Me. Prom. Yes or no?", 10 ], [ "...", 3 ], "Cool.", ExtResource( 4 ) ], [ 0.6, [ "I have an offer for you that you won't be able to resist. Come with me to the prom?", 11 ], [ "I'll come pick you up at 7pm on the prom night, be ready!", 12 ], [ "...", 4 ], "Nice.", ExtResource( 6 ) ], [ 0.6, [ "I was thinking... I actually have no date for the prom yet, what about you?", 13 ], [ "And... you would make me the luckiest guy if you agreed to go with me to the prom!", 14 ], [ "...", 5 ], "That's nice!", ExtResource( 6 ) ], [ 0.4, [ "Be a sweety and come with me to the prom?", 15 ], [ "What if we had good time together at the prom?", 16 ], [ "...", 6 ], "Mhm.", ExtResource( 5 ) ], [ 0.4, [ "I just saw you looking at me and thought you wanted to ask me to prom!", 17 ], [ "So I wanted to ask you for a long time... will you come to prom with me?", 18 ], [ "...", 7 ], "Pft.", ExtResource( 5 ) ], [ 0.2, [ "Anyway, what do you think about going to the prom with this guy? ", 19 ], [ "What if we chilled out a bit together on the prom night?", 20 ], [ "...", 8 ], "...", ExtResource( 5 ) ], [ 0.6, [ "Come on, you know it'll be fun to go together!", 21 ], [ "Sure, take your time, I'm in no rush!", 22 ], [ "What's there to think about, who else are you going to go with - that jerk Odin?", 23 ], "I haven't thought about it yet. Do I have to answer right now?", ExtResource( 6 ) ], [ 0.45, [ "Because it will be fun!", 21 ], [ "Who else are you going to go with?", 22 ], [ "Cause I'm the best! You know that, I know that, everyone knows that!", 23 ], "What? Why would I want to go to prom with you?", ExtResource( 4 ) ], [ 0.6, [ "Well, my gentle personality, of course!", 21 ], [ "I tell jokes, I gift flowers and I dance like there's no tomorrow!", 22 ], [ "You'll just have to trust me and see for yourself!", 23 ], "Ha, ha, ha! What makes you think it's an irresistable offer?", ExtResource( 6 ) ], [ 0.4, [ "Because you're too cool to go with anyone else!", 21 ], [ "You know I don't give up that quickly, let me take you to the prom and you'll not regret!", 22 ], [ "Oh, shit, I wasn't ready for that! Please, come with me, please!", 23 ], "How do you know I'll be home to be picked up and not going by someone else?", ExtResource( 7 ) ], [ 0.5, [ "Yes.", 21 ], [ "I'm sure I'm not the first one to ask, but yeah, let's go together?", 22 ], [ "Only if you want to go with me.", 23 ], "Are you asking me out?", ExtResource( 4 ) ], [ 0.4, [ "100%", 21 ], [ "Words can't express!", 22 ], [ "5/7", 23 ], "Ha, ha, really? How much do you want to go to prom with me?", ExtResource( 4 ) ], [ 0.2, [ "Going to prom with you is my dream!", 24 ], [ "Your eyes are melting my heart, so please tell me whatever you want!", 25 ], [ "If I were you, I wouldn't miss out on this sexy boy!", 26 ], "Are you begging now?", ExtResource( 6 ) ], [ 0.1, [ "Whoa, whoa, you're too good looking to be talking like that! I'll let you make it up by coming with me!", 24 ], [ "Yes, I am a potato, but a darn tasty one!", 24 ], [ "Ok, I actually have zero self esteem what did you expect?!", 26 ], "Oh, I've been waiting for you to ask me this question! So I could say piss off, potato!", ExtResource( 5 ) ], [ 0.25, [ "Freyja, please ask me to the prom and I will say YES!", 24 ], [ "Don't lie to me, we both know you're in love with me!", 25 ], [ "I will fulfill your dream of the perfect prom night!", 26 ], "Ha, ha what are you talking about?", ExtResource( 4 ) ], [ 0.15, [ "Ha, ha, ha! That's pretty good actually! You're beautiful AND funny!", 24 ], [ "I don't know what came over me, I'm sorry, would you still consider it?", 25 ], [ "No, no, sorry, I've just been in love with you for, like, 8 years!", 26 ], "Which is why you called me a baby? Do I look like I puke and shit all the time?", ExtResource( 5 ) ], [ 0.1, [ "THAT IS INSANEEEE!", 24 ], [ "Oh, come on, you look like a Norse goddess, you shouldn't say such nonsense and come to prom with me!", 25 ], [ "Wait, deaf? It's not a funny joke, Freyja.", 26 ], "If I had to choose to go to the prom with you or to kill myself, I'd rather be deaf.", ExtResource( 5 ) ], [ 0.05, [ "Oh, sorry, my mystake, I must have mistaken you for some other girl!", 24 ], [ "If you don't know anything about me, why don't we go to prom together?", 25 ], [ "Well, I'm your prince on a white horse!", 26 ], "Ah, who the hell are you, why are you talking to me?", ExtResource( 5 ) ], [ 0.8, [ "Please, please, please, please, please!", 27 ], [ "Can you please leave my mind and heart, I'm obsessed with you!", 27 ], [ "I've been waiting for you to say this! Come with me!", 27 ], "Hmmm... If you ask nicely, I might just say yes!", ExtResource( 6 ) ], [ 0.6, [ "I'll be your foxy guy, just say yes!", 27 ], [ "Oh my god, I'm dying! Please say you're not lying!", 27 ], [ "I'm blushing, is that a yes?", 27 ], "Hmmm... you're a foxy guy, aren't you? I like it!", ExtResource( 4 ) ], [ 0.3, [ "Ok, ok, chill, it's not like I'll be like this the whole time!", 27 ], [ "What's wrong with that? I'm just confident we'll spend nice time together!", 27 ], [ "Even a cocky dude deserves at least 1 dance, doesn't he?...", 27 ], "You're a bit too cocky for me, I'm not sure I'll have fun with you.", ExtResource( 5 ) ], [ 0.3, [ "On a date? Slow down there, I'm only talking about going to prom together!", 27 ], [ "I promise you'll never forget our prom together!", 27 ], [ "I'll give you 1 more shot to say yes.", 27 ], "Ok, I'll give you 1 more shot, why should we go on a date?", ExtResource( 5 ) ], [ 0.2, [ "Pfff. No! What are you even talking about, just come to prom with me already!", 27 ], [ "You're weird yourself, I like weird, sounds like a good fit to me!", 27 ], [ "What? Nervous! I bet you're nervous, how about that?!", 27 ], "Ok, dude, you're a bit weird, but that's cool you're probably just nervous", ExtResource( 5 ) ], [ 0.1, [ "I should have asked Becky out!", 27 ], [ "Yo, yo, yo! Don't be judging me like that, what about second chances?", 27 ], [ "Ok, lets end these games, do you want me or not?", 27 ], "I don't like your vibe, leave me alone!", ExtResource( 5 ) ], [ 0.5, [ "Ok!", 28 ], [ "Shit!", 28 ], [ "Easy cheasy", 28 ], "Oh, shit, Kimmy's coming over! I like that you that you say what you think! Can you please get rid of him?", ExtResource( 5 ) ], [ 0.5, [ "Ha, ha, ha! Who talks like that? Miss me with that gay shit!", 29 ], [ "Oh, dude, just don't start crying!", 29 ], [ "Eat my drawers, Mr.poopy snake!", 29 ], "What the fliping heck is going on here! Freyja, why are you talking to this little pony?", ExtResource( 5 ) ], [ 0.0, [ "Let's go to the prom", 30 ], [ "This was just a dream!", 0 ], [ "I can't dance! *runs away*", 0 ], "Thanks, you're my hero!", ExtResource( 6 ) ], [ 1.0 ] ]
+dialogue_options = [ [ 0.5, [ "Hi, how are you Freyja?", 1 ], [ "Yo, yo, yo, baby! What's up?", 2 ], [ "...", 0 ], "Hm...?", ExtResource( 4 ), ExtResource( 2 ) ], [ 0.5, [ "Same as you!", 3 ], [ "Doing good as always!", 4 ], [ "Better now that I met you!", 5 ], "I'm good, you?", ExtResource( 4 ), ExtResource( 2 ) ], [ 0.35, [ "Nice, I'm good, too!", 6 ], [ "Sorry, I didn't mean to be rude!", 7 ], [ "Oh, good? I thought you're tired... cause you've been running through my mind all day!", 8 ], "Good. What do you want?", ExtResource( 5 ), ExtResource( 2 ) ], [ 0.55, [ "So, have you already thought about who you're going to prom with?", 9 ], [ "You. Me. Prom. Yes or no?", 10 ], [ "...", 3 ], "Cool.", ExtResource( 4 ), ExtResource( 2 ) ], [ 0.6, [ "I have an offer for you that you won't be able to resist. Come with me to the prom?", 11 ], [ "I'll come pick you up at 7pm on the prom night, be ready!", 12 ], [ "...", 4 ], "Nice.", ExtResource( 6 ), ExtResource( 2 ) ], [ 0.6, [ "I was thinking... I actually have no date for the prom yet, what about you?", 13 ], [ "And... you would make me the luckiest guy if you agreed to go with me to the prom!", 14 ], [ "...", 5 ], "That's nice!", ExtResource( 6 ), ExtResource( 2 ) ], [ 0.4, [ "Be a sweety and come with me to the prom?", 15 ], [ "What if we had good time together at the prom?", 16 ], [ "...", 6 ], "Mhm.", ExtResource( 5 ), ExtResource( 2 ) ], [ 0.4, [ "I just saw you looking at me and thought you wanted to ask me to prom!", 17 ], [ "So I wanted to ask you for a long time... will you come to prom with me?", 18 ], [ "...", 7 ], "Pft.", ExtResource( 5 ), ExtResource( 2 ) ], [ 0.2, [ "Anyway, what do you think about going to the prom with this guy? ", 19 ], [ "What if we chilled out a bit together on the prom night?", 20 ], [ "...", 8 ], "...", ExtResource( 5 ), ExtResource( 2 ) ], [ 0.6, [ "Come on, you know it'll be fun to go together!", 21 ], [ "Sure, take your time, I'm in no rush!", 22 ], [ "What's there to think about, who else are you going to go with - that jerk Odin?", 23 ], "I haven't thought about it yet. Do I have to answer right now?", ExtResource( 6 ), ExtResource( 2 ) ], [ 0.45, [ "Because it will be fun!", 21 ], [ "Who else are you going to go with?", 22 ], [ "Cause I'm the best! You know that, I know that, everyone knows that!", 23 ], "What? Why would I want to go to prom with you?", ExtResource( 4 ), ExtResource( 2 ) ], [ 0.6, [ "Well, my gentle personality, of course!", 21 ], [ "I tell jokes, I gift flowers and I dance like there's no tomorrow!", 22 ], [ "You'll just have to trust me and see for yourself!", 23 ], "Ha, ha, ha! What makes you think it's an irresistable offer?", ExtResource( 6 ), ExtResource( 2 ) ], [ 0.4, [ "Because you're too cool to go with anyone else!", 21 ], [ "You know I don't give up that quickly, let me take you to the prom and you'll not regret!", 22 ], [ "Oh, shit, I wasn't ready for that! Please, come with me, please!", 23 ], "How do you know I'll be home to be picked up and not going by someone else?", ExtResource( 7 ), ExtResource( 2 ) ], [ 0.5, [ "Yes.", 21 ], [ "I'm sure I'm not the first one to ask, but yeah, let's go together?", 22 ], [ "Only if you want to go with me.", 23 ], "Are you asking me out?", ExtResource( 4 ), ExtResource( 2 ) ], [ 0.4, [ "100%", 21 ], [ "Words can't express!", 22 ], [ "5/7", 23 ], "Ha, ha, really? How much do you want to go to prom with me?", ExtResource( 4 ), ExtResource( 2 ) ], [ 0.2, [ "Going to prom with you is my dream!", 24 ], [ "Your eyes are melting my heart, so please tell me whatever you want!", 25 ], [ "If I were you, I wouldn't miss out on this sexy boy!", 26 ], "Are you begging now?", ExtResource( 6 ), ExtResource( 2 ) ], [ 0.1, [ "Whoa, whoa, you're too good looking to be talking like that! I'll let you make it up by coming with me!", 24 ], [ "Yes, I am a potato, but a darn tasty one!", 24 ], [ "Ok, I actually have zero self esteem what did you expect?!", 26 ], "Oh, I've been waiting for you to ask me this question! So I could say piss off, potato!", ExtResource( 5 ), ExtResource( 2 ) ], [ 0.25, [ "Freyja, please ask me to the prom and I will say YES!", 24 ], [ "Don't lie to me, we both know you're in love with me!", 25 ], [ "I will fulfill your dream of the perfect prom night!", 26 ], "Ha, ha what are you talking about?", ExtResource( 4 ), ExtResource( 2 ) ], [ 0.15, [ "Ha, ha, ha! That's pretty good actually! You're beautiful AND funny!", 24 ], [ "I don't know what came over me, I'm sorry, would you still consider it?", 25 ], [ "No, no, sorry, I've just been in love with you for, like, 8 years!", 26 ], "Which is why you called me a baby? Do I look like I puke and shit all the time?", ExtResource( 5 ), ExtResource( 2 ) ], [ 0.1, [ "THAT IS INSANEEEE!", 24 ], [ "Oh, come on, you look like a Norse goddess, you shouldn't say such nonsense and come to prom with me!", 25 ], [ "Wait, deaf? It's not a funny joke, Freyja.", 26 ], "If I had to choose to go to the prom with you or to kill myself, I'd rather be deaf.", ExtResource( 5 ), ExtResource( 2 ) ], [ 0.05, [ "Oh, sorry, my mystake, I must have mistaken you for some other girl!", 24 ], [ "If you don't know anything about me, why don't we go to prom together?", 25 ], [ "Well, I'm your prince on a white horse!", 26 ], "Ah, who the hell are you, why are you talking to me?", ExtResource( 5 ), ExtResource( 2 ) ], [ 0.8, [ "Please, please, please, please, please!", 27 ], [ "Can you please leave my mind and heart, I'm obsessed with you!", 27 ], [ "I've been waiting for you to say this! Come with me!", 27 ], "Hmmm... If you ask nicely, I might just say yes!", ExtResource( 6 ), ExtResource( 2 ) ], [ 0.6, [ "I'll be your foxy guy, just say yes!", 27 ], [ "Oh my god, I'm dying! Please say you're not lying!", 27 ], [ "I'm blushing, is that a yes?", 27 ], "Hmmm... you're a foxy guy, aren't you? I like it!", ExtResource( 4 ), ExtResource( 2 ) ], [ 0.3, [ "Ok, ok, chill, it's not like I'll be like this the whole time!", 27 ], [ "What's wrong with that? I'm just confident we'll spend nice time together!", 27 ], [ "Even a cocky dude deserves at least 1 dance, doesn't he?...", 27 ], "You're a bit too cocky for me, I'm not sure I'll have fun with you.", ExtResource( 5 ), ExtResource( 2 ) ], [ 0.3, [ "On a date? Slow down there, I'm only talking about going to prom together!", 27 ], [ "I promise you'll never forget our prom together!", 27 ], [ "I'll give you 1 more shot to say yes.", 27 ], "Ok, I'll give you 1 more shot, why should we go on a date?", ExtResource( 5 ), ExtResource( 2 ) ], [ 0.2, [ "Pfff. No! What are you even talking about, just come to prom with me already!", 27 ], [ "You're weird yourself, I like weird, sounds like a good fit to me!", 27 ], [ "What? Nervous! I bet you're nervous, how about that?!", 27 ], "Ok, dude, you're a bit weird, but that's cool you're probably just nervous", ExtResource( 5 ), ExtResource( 2 ) ], [ 0.1, [ "I should have asked Becky out!", 27 ], [ "Yo, yo, yo! Don't be judging me like that, what about second chances?", 27 ], [ "Ok, lets end these games, do you want me or not?", 27 ], "I don't like your vibe, leave me alone!", ExtResource( 5 ), ExtResource( 2 ) ], [ 0.5, [ "Ok!", 28 ], [ "Shit!", 28 ], [ "Easy cheasy", 28 ], "Oh, shit, Kimmy's coming over! I like that you that you say what you think! Can you please get rid of him?", ExtResource( 5 ), ExtResource( 2 ) ], [ 0.5, [ "Ha, ha, ha! Who talks like that? Miss me with that gay shit!", 29 ], [ "Oh, dude, just don't start crying!", 29 ], [ "Eat my drawers, Mr.poopy snake!", 29 ], "What the fliping heck is going on here! Freyja, why are you talking to this little pony?", ExtResource( 5 ), ExtResource( 8 ) ], [ 0.0, [ "Let's go to the prom", 30 ], [ "This was just a dream!", 0 ], [ "I can't dance! *runs away*", 0 ], "Thanks, you're my hero!", ExtResource( 6 ), ExtResource( 2 ) ], [ 1.0 ] ]
 
 [node name="TextureProgress" type="TextureProgress" parent="DialogueWrapper" index="0"]
 
@@ -123,9 +124,9 @@ page = 0.0
 value = 0.5
 exp_edit = false
 rounded = false
-texture_under = ExtResource( 8 )
+texture_under = ExtResource( 9 )
 texture_over = null
-texture_progress = ExtResource( 9 )
+texture_progress = ExtResource( 10 )
 radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false
@@ -144,7 +145,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 expand = true
 stretch_mode = 0
 _sections_unfolded = [ "Grow Direction", "Visibility" ]
@@ -178,15 +179,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -350.0
 margin_top = -452.0
-margin_right = 34.0
-margin_bottom = 48.0
+margin_right = -25.0
+margin_bottom = 136.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 stretch_mode = 0
 
 [node name="Head" type="TextureRect" parent="DialogueWrapper/Background/GirlText/Body" index="0"]
@@ -195,10 +196,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -293.0
-margin_top = -644.0
-margin_right = -121.0
-margin_bottom = -431.0
+margin_left = -266.0
+margin_top = -735.0
+margin_right = -53.0
+margin_bottom = -235.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -311,7 +312,7 @@ _sections_unfolded = [ "Margin" ]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="3"]
 
-stream = ExtResource( 14 )
+stream = ExtResource( 15 )
 volume_db = 0.0
 autoplay = true
 mix_target = 0
