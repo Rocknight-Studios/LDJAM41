@@ -6,6 +6,7 @@ var current_pos = Vector2()
 var move_speed = 5
 var target_pos = Vector2()
 var target_dir = Vector2()
+var pos_to_target_dir = Vector2()
 var health_bar_scene = preload("res://Scenes/Objects/Health.tscn")
 var health_bar = 0
 signal enemy_dead
@@ -29,10 +30,17 @@ func move(target_input_pos):
 	current_pos = self.position
 	target_pos = target_input_pos
 	target_dir = (current_pos - target_pos).normalized()
+	print(current_pos)
+	print(target_pos)
+	print(target_dir)
 	set_process(true)
 
 func _process(delta):
-	if current_pos == target_pos:
+	pos_to_target_dir = (position - target_pos).normalized()
+	print(pos_to_target_dir)
+	print(target_dir)
+	if pos_to_target_dir.angle() != target_dir.angle():
 		set_process(false)
+		return
 	else:
-		self.position += move_speed * target_dir * 60 * delta
+		move_and_collide(move_speed * target_dir * 60 * delta)
