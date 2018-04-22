@@ -43,7 +43,7 @@ class Bullet extends Object:
 
 	func _physics_process(delta):
 
-		velocity = dir * speed + grav_vec
+		velocity = dir * speed + grav_vec * 60 * delta
 		pos += velocity
 
 		if max_speed_enable and speed >= max_speed:

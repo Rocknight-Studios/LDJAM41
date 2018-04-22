@@ -146,6 +146,7 @@ func _process(delta):
 				spawnrate_timer.start()
 	else:
 		spawnrate_timer.wait_time = 0
+		spawnrate_timer.start()
 		
 	angle += spin
 	spin += spin_acc
