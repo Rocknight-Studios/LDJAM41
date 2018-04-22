@@ -24,7 +24,7 @@ func set_new_dialogue_state():
 
 		freyja_head.texture = dialogue_options[Global.current_dialogue_index][5]
 
-		#boss.texture = dialogue_options[Global.current_dialogue_index][6]
+		boss.texture = dialogue_options[Global.current_dialogue_index][6]
 
 		if progress_bar.value < approximation_float:
 			Global.emit_signal("load_bullet_hell_scene")
