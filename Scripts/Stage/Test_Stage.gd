@@ -96,6 +96,21 @@ func _ready():
 		#spawno1.spawnrate = 0.5
 		#spawno1.bullet_ammount = 10
 		#spawno1.bullet_seperation = 360 - 36
+	if section == 4:
+		borders = [Vector2(-100, -100), Vector2(484, 584)]
+		bullet_lists.append(spawno_custom_bullet_list)
+		spawno = _create_spawner()
+		spawno.pos = Vector2(384/2, 484/4)
+		spawno.angle = 22.5
+		spawno.spin = 1
+		spawno.bullet_type = 0
+		spawno.angle = 0
+		spawno.bullet_speed = 0.0
+		spawno.bullet_acceleration = 0.005
+		spawno.spawnrate = 0.05
+		spawno.bullet_ammount = 20
+		spawno.bullet_seperation = 360 -12
+		spawno.bullet_spawnradius = 25
 
 func _process(delta):
 	if section == 0:
@@ -126,5 +141,11 @@ func _process(delta):
 			timer = 0
 		else:
 			timer += 1
+	if section == 4:
+		spawno.bullet_angle = rand_range(-360, 360)
+		spawno.pos.y += 0.02
+		spawno.bullet_acceleration += 0.000015
+		spawno.spawnrate += 0.000004
+
 
 		
