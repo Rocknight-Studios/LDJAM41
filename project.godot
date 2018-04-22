@@ -11,14 +11,17 @@ config_version=3
 [application]
 
 config/name="LudumDare41"
-run/main_scene="res://Scenes/World.tscn"
+run/main_scene="res://Scenes/Control.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://Global.gd"
 
 [display]
 
 window/size/width=1280
 window/size/height=720
-window/size/resizable=false
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
