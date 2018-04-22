@@ -67,10 +67,22 @@ func _on_Timer_timeout():
 	can_shot = true
 
 
+onready var scene_load_timer = Timer.new() # To save resources and have just one instance of the timer.
+
 func on_custom_collision(bullet):
 	print(str(bullet) + " killed me.")
 	is_dead = true
 	$Death.play()
+
+	scene_load_timer.set_one_shot(true)
+	scene_load_timer.set_timer_process_mode(Timer.TIMER_PROCESS_PHYSICS)
+	scene_load_timer.set_wait_time(1.0)
+	scene_load_timer.connect("timeout", self, "on_load_novel_scene")
+	scene_load_timer.start()
+	add_child(scene_load_timer)
+
+func on_load_novel_scene():
+	Global.emit_signal("load_novel_scene")
 
 func on_graze_collision(bullet):
 	print(str(bullet) + " grazed.")

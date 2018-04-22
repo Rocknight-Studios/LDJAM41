@@ -6,24 +6,31 @@ onready var button1 = get_node("Background/GirlText/VBoxContainer/Button1") # Fo
 onready var button2 = get_node("Background/GirlText/VBoxContainer/Button2") # For speed and convenience.
 export (Array) var dialogue_options = [] # All the options of the player.
 export var current_dialogue_index = 0 # To start dialogue from here.
+export var current_bullet_meter_progress = .5 # To know, when to run the bullet hell.
+var approximation_float = .0001 # Take floating point error into account.
 
 func _ready():
-	set_new_texts()
+	set_new_dialogue_state()
 
-func set_new_texts():
-	girl_text.text = dialogue_options[current_dialogue_index][0]
+func set_new_dialogue_state():
+	girl_text.text = dialogue_options[current_dialogue_index][4]
 	button0.text = dialogue_options[current_dialogue_index][1][0]
 	button1.text = dialogue_options[current_dialogue_index][2][0]
 	button2.text = dialogue_options[current_dialogue_index][3][0]
 
+	current_bullet_meter_progress = dialogue_options[current_dialogue_index][0]
+
+	if current_bullet_meter_progress < approximation_float:
+		Global.emit_signal("load_bullet_hell_scene")
+
 func _on_Button0_button_down():
 	current_dialogue_index = dialogue_options[current_dialogue_index][1][1]
-	set_new_texts()
+	set_new_dialogue_state()
 
 func _on_Button1_button_down():
 	current_dialogue_index = dialogue_options[current_dialogue_index][2][1]
-	set_new_texts()
+	set_new_dialogue_state()
 
 func _on_Button2_button_down():
 	current_dialogue_index = dialogue_options[current_dialogue_index][3][1]
-	set_new_texts()
+	set_new_dialogue_state()
