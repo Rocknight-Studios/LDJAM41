@@ -21,11 +21,15 @@ func _ready():
 		awesomeboss.connect("enemy_dead", self, "enemy_dead")
 		spawno = _create_spawner()
 		spawno.pos = Vector2(384/2, 484/4)
-		spawno.bullet_ammount = 10
-		spawno.spin = 2
-		spawno.spawnrate = 0.015
-		spawno.bullet_seperation = 324
-		spawno.bullet_speed = 2
+		spawno.spin = 0.5
+		spawno.spawnrate = 0.1
+		spawno.threads = 8.0
+		spawno.thread_seperation = 45.0
+		spawno.bullet_ammount = 3.0
+		spawno.bullet_seperation = 10.0
+		spawno.bullet_speed = 2.0
+		spawno.bullet_speed_to = 4.0
+		spawno.bullet_speed_to_enable = true
 	if section == 1:
 		awesomeboss = _create_boss()
 		awesomeboss.health = 500.0
@@ -60,6 +64,19 @@ func _ready():
 		spawno2.bullet_speed_to_enable = true
 		spawno2.angle = target(spawno2.pos, player.position)
 		spawno2.pause = true
+	if section == 5:
+		awesomeboss = _create_boss()
+		awesomeboss.health = 500.0
+		awesomeboss.max_health = 500.0
+		awesomeboss.position = Vector2(384/2, 484/4)
+		awesomeboss.connect("enemy_dead", self, "enemy_dead")
+		spawno = _create_spawner()
+		spawno.pos = Vector2(384/2, 484/4)
+		spawno.bullet_ammount = 10
+		spawno.spin = 2
+		spawno.spawnrate = 0.015
+		spawno.bullet_seperation = 324
+		spawno.bullet_speed = 2
 	if section == 6:
 		borders = [Vector2(-100, -100), Vector2(484, 584)]
 		bullet_lists.append(spawno_custom_bullet_list)
@@ -131,12 +148,24 @@ func _ready():
 
 func _process(delta):
 	if section == 0:
+		awesomeboss.position.x += rand_range(-10, 10)
+		awesomeboss.position.y += rand_range(-10, 10)
+		if awesomeboss.position.y >= 114:
+			awesomeboss.position.y += rand_range(-5, -10)
+		if awesomeboss.position.x >= 300:
+			awesomeboss.position.x += rand_range(-5, -10)
+		if awesomeboss.position.y <= 10:
+			awesomeboss.position.y += rand_range(5, 10)
+		if awesomeboss.position.x <= 10:
+			awesomeboss.position.x += rand_range(5, 10)
+		spawno.pos = awesomeboss.position
+	if section == 5:
 		if timer >= 7:
 			spawno.bullet_speed = 2
 			timer = 0
 			spawno.angle += rand_range(0, 90)
 			spawno.spin = rand_range(5, -5)
-		spawno.bullet_speed += 0.425
+		spawno.bullet_speed += 0.375
 		timer += 1
 	if section == 1:
 		if timer >= 60:
@@ -183,9 +212,10 @@ func enemy_dead():
 			i.remove(i.find(b))
 	awesomeboss.queue_free()
 	set_physics_process(false)
+	set_process(false)
 	scene_load_timer.set_one_shot(true)
 	scene_load_timer.set_timer_process_mode(Timer.TIMER_PROCESS_PHYSICS)
-	scene_load_timer.set_wait_time(1.0)
+	scene_load_timer.set_wait_time(0)
 	scene_load_timer.connect("timeout", self, "on_load_novel_scene")
 	scene_load_timer.start()
 	add_child(scene_load_timer)
