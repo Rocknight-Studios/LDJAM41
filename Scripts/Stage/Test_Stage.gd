@@ -15,6 +15,7 @@ onready var time_before_new_section = Timer.new()
 var please_wait = false
 
 func _ready():
+	section = Global.section
 	awesomeboss = _create_boss()
 	awesomeboss.health = 500.0
 	awesomeboss.max_health = 500.0
@@ -123,6 +124,23 @@ func on_wait_timer():
 		for b in i:
 			b.free()
 			i.remove(i.find(b))
+	#if current_section + 1 == 2:
+		#scene_load_timer.set_one_shot(true)
+		#scene_load_timer.set_timer_process_mode(Timer.TIMER_PROCESS_PHYSICS)
+		#scene_load_timer.set_wait_time(1.0)
+		#scene_load_timer.connect("timeout", self, "on_load_novel_scene")
+		#scene_load_timer.start()
+		#return
+	#if current_section + 1 == 4:
+		#scene_load_timer.set_one_shot(true)
+		#scene_load_timer.set_timer_process_mode(Timer.TIMER_PROCESS_PHYSICS)
+		#scene_load_timer.set_wait_time(1.0)
+		#scene_load_timer.connect("timeout", self, "on_load_novel_scene")
+		#scene_load_timer.start()
+		#return
+	if current_section + 1 == 7:
+		Global.emit_signal("load_victory_scene")
+		return
 	section_change(current_section + 1)
 
 func section_change(value):

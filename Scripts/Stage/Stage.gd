@@ -153,7 +153,6 @@ func _physics_process(delta):
 				b.check_collisions(player, player_pos)
 
 func on_load_novel_scene():
-	Global.attempts -= 1
 	Global.current_dialogue_index = 0
 	if Global.attempts > 0:
 		Global.emit_signal("load_novel_scene")

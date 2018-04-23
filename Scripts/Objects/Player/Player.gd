@@ -55,6 +55,15 @@ func _process(delta):
 	velocity = direction * speed
 
 	move_and_collide(velocity)
+	
+	if position.y >= 484:
+		position.y = 484
+	if position.y <= 0:
+		position.y = 0
+	if position.x >= 384:
+		position.x = 384
+	if position.x <= 0:
+		position.x = 0
 
 func _shoot(pos=Vector2(0, 0), shotdir = Vector2(0, -1)):
 	var shot_instance = shot.instance()

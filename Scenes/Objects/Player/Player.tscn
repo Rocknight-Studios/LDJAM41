@@ -15,7 +15,7 @@ extents = Vector2( 10, 15.3364 )
 custom_solver_bias = 0.0
 radius = 1.41379
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 2

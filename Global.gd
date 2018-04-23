@@ -10,6 +10,8 @@ export var novel_scene_path = "res://Scenes/Control.tscn" # To know, what to loa
 export var victory_scene_path = "res://Scenes/Victory.tscn" # To know, what to load.
 export var game_over_scene_path = "res://Scenes/GameOver.tscn" # To know, what to load.
 
+export (int) var section = 0
+
 export var current_dialogue_index = 0 # To start dialogue from here.
 
 export var attempts = 3 # When there are no more attempts, load game over.
@@ -46,4 +48,7 @@ func _deferred_goto_scene(path):
 	current_scene = s.instance()
 	get_tree().get_root().add_child(current_scene)
 	get_tree().set_current_scene( current_scene )
+
+func _process(delta):
+	print(current_dialogue_index)
 
