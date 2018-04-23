@@ -5,7 +5,7 @@ signal load_novel_scene
 signal load_victory_scene
 signal load_game_over_scene
 
-export var bullet_hell_scene_path = "res://Scenes/World.tscn" # To know, what to load.
+export var bullet_hell_scene_path = "res://Scenes/BulletHellSection.tscn" # To know, what to load.
 export var novel_scene_path = "res://Scenes/Control.tscn" # To know, what to load.
 export var victory_scene_path = "res://Scenes/Victory.tscn" # To know, what to load.
 export var game_over_scene_path = "res://Scenes/GameOver.tscn" # To know, what to load.
